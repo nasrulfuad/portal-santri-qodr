@@ -10,6 +10,8 @@ class App
 	public function __construct()
 	{
 		$url = $this->parseUrl();
+		$url[0] = ucfirst($url[0]);
+
 		if ( file_exists('../app/Controllers/'. $url[0] .'.php') ) {
 			$this->controller = $url[0];
 			unset($url[0]);
@@ -46,7 +48,7 @@ class App
 	/*
 	* Parse url menjadi array
 	*/
-	public static function parseUrl()
+	public function parseUrl()
 	{
 		if ( isset($_GET['url'] ) )
 		{

@@ -2,11 +2,10 @@
 
 class Welcome extends Controller
 {
-	public static function index($name = 'Nasrul Fuad', $job = 'Frontend Developer')
+	public function index($name = 'Nasrul Fuad', $job = 'Frontend Developer')
 	{
-		$datas['name'] = $name;
-		$datas['job'] = $job;
-		$datas['title'] = 'Welcome to my world!';
+		$datas['title'] = 'QODR | Santri';
+		$datas['santri'] = $this->model('santriModel')->getAllSantri();
 
 		$this->view('layouts/header', $datas);
 		$this->view('Welcome', $datas);

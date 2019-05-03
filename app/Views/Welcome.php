@@ -3,7 +3,7 @@
         <div class="fh5co-project masonry-brick">
           <a href="#">
             <img src="<?= BASEURL; ?>/images/img_20.jpg" alt="Free HTML5 by FreeHTML5.co">
-            <h2>Your Project Title Here</h2>
+            <h2><?= $datas['santri'][0] ?></h2>
           </a>
         </div>
         <div class="fh5co-project masonry-brick">
