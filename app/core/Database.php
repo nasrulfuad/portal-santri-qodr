@@ -76,14 +76,3 @@ class Database
  	}
 
 }
-
-
-
-
-
-
-
-
-
-
-

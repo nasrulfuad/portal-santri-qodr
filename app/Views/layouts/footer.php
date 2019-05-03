@@ -6,7 +6,8 @@
 				</div>
 			</div>
 		</footer>
-		<!-- END #fh5co-footer -->
+	</div>
+	<!-- END #fh5co-footer -->
 	<!-- jQuery -->
 	<script src="<?= BASEURL; ?>/js/jquery.min.js"></script>
 	<!-- Bootstrap -->

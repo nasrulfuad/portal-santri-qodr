@@ -17,7 +17,7 @@
 
  	public function getAllAlumni()
  	{
- 		$this->db->query('SELECT * FROM ' . $this->table);
+ 		$this->db->query('SELECT * FROM ' . $this->table . ' WHERE status=2;');
  		return $this->db->resultSet();
  	}
  }

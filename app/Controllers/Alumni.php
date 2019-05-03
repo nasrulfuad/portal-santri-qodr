@@ -6,6 +6,7 @@ class Alumni extends Controller
 	{
 		$datas['title'] = 'QODR | Alumni';
 		$datas['alumni'] = $this->model('alumniModel')->getAllAlumni();
+		$datas['alumniLink'] = 'active';
 
 		$this->view('layouts/header', $datas);
 		$this->view('Alumni', $datas);

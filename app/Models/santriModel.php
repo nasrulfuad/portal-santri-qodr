@@ -1,10 +1,23 @@
 <?php
  class santriModel
  {
- 	private $santri = ['Nasrul Fuad', 'Rijal Solahudin'];
+
+ 	private $table = 'santri';
+ 	private $db;
+
+ 	public function __construct()
+ 	{
+ 		$this->db = new Database;
+ 	}
+
+ 	public function getSantri()
+ 	{
+ 		return $this->alumni;
+ 	}
 
  	public function getAllSantri()
  	{
- 		return $this->santri;
+ 		$this->db->query('SELECT * FROM ' . $this->table . ' WHERE status=1;');
+ 		return $this->db->resultSet();
  	}
  }

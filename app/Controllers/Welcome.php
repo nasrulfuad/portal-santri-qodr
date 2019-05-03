@@ -6,6 +6,7 @@ class Welcome extends Controller
 	{
 		$datas['title'] = 'QODR | Santri';
 		$datas['santri'] = $this->model('santriModel')->getAllSantri();
+		$datas['santriLink'] = 'active';
 
 		$this->view('layouts/header', $datas);
 		$this->view('Welcome', $datas);

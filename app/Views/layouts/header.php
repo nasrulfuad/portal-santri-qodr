@@ -1,3 +1,4 @@
+<?php extract($datas); ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -6,7 +7,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title><?= $datas['title']; ?></title>
+	<title><?= $title; ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
@@ -25,18 +26,6 @@
 
 	//////////////////////////////////////////////////////
 	 -->
-
-  	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
-
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" href="favicon.ico">
 
@@ -48,25 +37,31 @@
 
 	<!-- Modernizr JS -->
 	<script src="<?= BASEURL; ?>/js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
 
 	</head>
 	<body>
-
-		<header id="fh5co-header" role="banner">
-			<div class="container text-center">
-				<div id="fh5co-logo">
-					<a href="<?= BASEURL; ?>"><img src="<?= BASEURL; ?>/images/logo-horizontal.png" alt="qodr.or.id"></a>
-				</div>
-				<nav>
-					<ul>
-						<li><a href="<?= BASEURL; ?>">Santri</a></li>
-						<li><a href="<?= BASEURL; ?>/alumni">Alumni</a></li>
-					</ul>
-				</nav>
+		<div class="wrapper">
+			<div class="centeredBox">
+				<main role='main'>
+					<div aria-busy='true' aria-label='Loading' role='progressbar'></div>
+					<br>
+					<span id="typewriter" data-array=""></span>
+					<span class="cursor"></span>
+				</main>	
 			</div>
-		</header>
+		</div>
+		<div class="container-content">	
+			<header id="fh5co-header" role="banner">
+				<div class="container text-center">
+					<div id="fh5co-logo">
+						<a href="<?= BASEURL; ?>"><img src="<?= BASEURL; ?>/images/logo-horizontal.png" alt="qodr.or.id"></a>
+					</div>
+					<nav>
+						<ul>
+							<li class="<?= $santriLink; ?>"><a href="<?= BASEURL; ?>">Santri</a></li>
+							<li class="<?= $alumniLink; ?>"><a href="<?= BASEURL; ?>/alumni">Alumni</a></li>
+						</ul>
+					</nav>
+				</div>
+			</header>
 		<!-- END #fh5co-header -->
