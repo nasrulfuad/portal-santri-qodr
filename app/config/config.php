@@ -8,5 +8,5 @@ define('BASEURL', 'http://localhost/santries/public');
 define('HOST', 'localhost');
 define('WONGE', 'root');
 define('GEMBOKE', '`');
-define('JENEGEN_AREKE', 'protal_qodr');
+define('JENENGE_AREKE', 'portal_qodr');
 

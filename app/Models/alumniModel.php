@@ -2,20 +2,12 @@
  class alumniModel
  {
 
- 	private $dbh; //database ahndler
- 	private $stmt;
+ 	private $table = 'santri';
+ 	private $db;
 
  	public function __construct()
  	{
- 		//data soure name
- 		$dsn = 'mysql:host=localhost;dbname=portal_qodr';
-
- 		try {
- 			$this->dbh = new PDO($dsn, 'root', '`');
- 		} catch(PDOException $error) {
- 			die($error->getMessage());
- 		}
-
+ 		$this->db = new Database;
  	}
 
  	public function getAlumni()
@@ -25,8 +17,7 @@
 
  	public function getAllAlumni()
  	{
- 		$this->stmt = $this->dbh->prepare('SELECT * FROM santri WHERE status = 2');
- 		$this->stmt->execute();
- 		return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+ 		$this->db->query('SELECT * FROM ' . $this->table);
+ 		return $this->db->resultSet();
  	}
  }

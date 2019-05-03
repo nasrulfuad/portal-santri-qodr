@@ -11,12 +11,6 @@
   font-weight: normal;
   font-style: normal;
 }
-/* =======================================================
-*
-* 	Template Style 
-*	Edit this section
-*
-* ======================================================= */
 body {
   font-family: "Roboto", Arial, serif;
   line-height: 1.8;
@@ -244,5 +238,3 @@ figure {
     padding-bottom: 30px;
   }
 }
-
-/*# sourceMappingURL=style.css.map */
