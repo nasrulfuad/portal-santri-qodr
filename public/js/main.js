@@ -62,21 +62,6 @@ setTimeout( function () {
 		setTimeout(() => {
 			$('.wrapper').fadeOut(1000);
 		}, 10);
-
-		var $container = $('#fh5co-projects-feed'),
-		containerWidth = $container.outerWidth();
-
-		$container.masonry({
-			itemSelector : '.fh5co-project',
-			columnWidth: function( containerWidth ) {
-				console.log(containerWidth)
-				if( containerWidth <= 330 ) { return 310; } else
-				if ((containerWidth >= 850) && (containerWidth < 1600)) { return 283; } else
-				{ return 503; }
-			},
-
-			isAnimated: !Modernizr.csstransitions
-		});
 	});
 
 })(window.jQuery);

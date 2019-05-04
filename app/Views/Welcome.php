@@ -1,18 +1,17 @@
     <div class="container-fluid pt70 pb70">
-      <div id="fh5co-projects-feed" class="fh5co-projects-feed clearfix masonry">
+      <div class="fh5co-projects-feed row">
         <?php foreach ($santri as $valueSantri) { ?>
-          <div class="fh5co-project masonry-brick">
-            <div class="fh5co-person text-center to-animate">
+          <div class="fh5co-project col-1 col-md-6 col-lg-4 p-3">
+            <div class="fh5co-person text-center">
               <figure><img src="<?= BASEURL; ?>/images/img_20.jpg" alt="Image"></figure>
               <h3><?= $valueSantri['nama_depan'] . ' ' . $valueSantri['nama_belakang']; ?></h3>
               <span class="fh5co-position">Web Designer</span>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts</p>
-              <ul class="social social-circle">
-                <li>One</li>
-                <li>One</li>
-                <li>One</li>
-                <li>One</li>
-              </ul>
+              <p>Asal  :  Jember</p>
+              <p>Cabang  :  HQ</p>
+              <p>Umur  :  19 Tahun</p>
+              <p>Skills  :  PHP, Laravel, HTML</p>
+              <p>Status : </p>
+              <p class="btn-status">Magang</p>
             </div>
           </div>
         <?php } ?>

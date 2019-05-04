@@ -12,8 +12,6 @@
 	<script src="<?= BASEURL; ?>/js/jquery.min.js"></script>
 	<!-- Bootstrap -->
 	<script src="<?= BASEURL; ?>/js/bootstrap.min.js"></script>
-	<!-- masonry -->
-	<script src="<?= BASEURL; ?>/js/jquery.masonry.min.js"></script>
 	<!-- MAIN JS -->
 	<script src="<?= BASEURL; ?>/js/main.js"></script>
 	</body>

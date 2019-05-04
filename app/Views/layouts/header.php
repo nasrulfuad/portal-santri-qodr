@@ -33,8 +33,6 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700" rel="stylesheet">
 	
 	<link rel="stylesheet" href="<?= BASEURL; ?>/css/style.css">
-
-
 	<!-- Modernizr JS -->
 	<script src="<?= BASEURL; ?>/js/modernizr-2.6.2.min.js"></script>
 
