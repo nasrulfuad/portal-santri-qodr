@@ -14,5 +14,6 @@
 	<script src="<?= BASEURL; ?>/js/bootstrap.min.js"></script>
 	<!-- MAIN JS -->
 	<script src="<?= BASEURL; ?>/js/main.js"></script>
+	<script src="<?= BASEURL . '/js/customs/' . $js; ?>"></script>
 	</body>
 </html>

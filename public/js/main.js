@@ -1,3 +1,13 @@
+(function($){
+	"use strict";
+
+	$(window).load(function() {
+		setTimeout(() => {
+			$('.wrapper').fadeOut(1000);
+		}, 30);
+	});
+})(window.jQuery);
+
 // The typewriter element
 var typeWriterElement = document.getElementById('typewriter');
 
@@ -55,13 +65,34 @@ setTimeout( function () {
 	StartWriter(0);
 }, 500);
 
-(function($){
-	"use strict";
-
-	$(window).load(function() {
-		setTimeout(() => {
-			$('.wrapper').fadeOut(1000);
-		}, 10);
+function get(baseUrl, url, element, offset) {
+	$.ajax({
+		method: 'GET',
+		url: url + '' + '/' + offset,
+		dataType: 'json',
+		success: (result) => {
+			let htmlTag = '';
+			if ( result.length != 0 ) {
+				$.each(result, (res, val) => {
+					htmlTag += `
+				          <div class="fh5co-project col-12 col-md-6 col-lg-4 p-3">
+				            <div class="fh5co-person text-center">
+				              <figure><img src="${ baseUrl }/images/person.jpg" alt="Image"></figure>
+				              <h3>${ val.nama.replace(/\b\w/g, l => l.toUpperCase()) }</h3>
+				              <span class="fh5co-position">Web Designer</span>
+				              <p>Asal  :  ${ val.kota_asal.replace(/\b\w/g, l => l.toUpperCase()) }</p>
+				              <p>Cabang  :  ${ (val.cabang_sekarang == 'hq') ? 'HQ' : val.cabang_sekarang.replace(/\b\w/g, l => l.toUpperCase()) }</p>
+				              <p>Umur  :  19 Tahun</p>
+				              <p>Skills  :  PHP, Laravel, HTML</p>
+				              <p>Status : </p>
+				              <p class="btn-status">${ val.status_santri }</p>
+				            </div>
+				          </div>
+					`;
+				});
+			}
+			( result.length < 9 ) ? $('#next').addClass('disabled') :'';
+			$(element).html(htmlTag);
+		}
 	});
-
-})(window.jQuery);
+}

@@ -17,7 +17,7 @@
 
  	public function getAllAlumni()
  	{
- 		$this->db->query('SELECT * FROM ' . $this->table . ' WHERE status=2;');
+ 		$this->db->query("SELECT * FROM $this->table WHERE status_santri='alumni';");
  		return $this->db->resultSet();
  	}
  }

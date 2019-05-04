@@ -15,9 +15,10 @@
  		return $this->alumni;
  	}
 
- 	public function getAllSantri()
+ 	public function getAllSantri($kolom, $offset)
  	{
- 		$this->db->query('SELECT * FROM ' . $this->table . ' WHERE status=1;');
+ 		$kolom = implode(',', $kolom);
+ 		$this->db->query("SELECT $kolom FROM $this->table WHERE status_santri= 'santri' LIMIT 9 OFFSET $offset;");
  		return $this->db->resultSet();
  	}
  }
