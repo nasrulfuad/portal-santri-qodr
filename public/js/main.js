@@ -4,7 +4,7 @@
 	$(window).load(function() {
 		setTimeout(() => {
 			$('.wrapper').fadeOut(1000);
-		}, 30);
+		}, 3000);
 	});
 })(window.jQuery);
 
@@ -12,7 +12,7 @@
 var typeWriterElement = document.getElementById('typewriter');
 
 // The TextArray: 
-var textArray = ["Selamat Datang.. ","I like JavaScript. ","I Love to Develop. ", "I like this Typewriter. "];
+var textArray = ["Bismillah.. ","Welcome to our portal.. ","I hope you enjoy the web... ", "Barakallahu fiikum... "];
 
 // You can also do this by transfering it through a data-attribute
 // var textArray = typeWriterElement.getAttribute('data-array');
@@ -63,9 +63,19 @@ function StartWriter(i) {
 // wait one second then start the typewriter
 setTimeout( function () {
 	StartWriter(0);
-}, 500);
+}, 300);
 
-function get(baseUrl, url, element, offset) {
+function getTotalRows(url) {
+	$.ajax({
+		method: 'GET',
+		url: url,
+		success: (result) => {
+			$('#totalPage').html(Math.ceil(result/9));
+		}
+	});
+}
+
+function getLimit(baseUrl, url, element, offset) {
 	$.ajax({
 		method: 'GET',
 		url: url + '' + '/' + offset,

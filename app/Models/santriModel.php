@@ -10,9 +10,10 @@
  		$this->db = new Database;
  	}
 
- 	public function getSantri()
+ 	public function getTotalRows($kolom)
  	{
- 		return $this->alumni;
+ 		$this->db->query("SELECT $kolom FROM santri WHERE status_santri='santri';");
+ 		return $this->db->resultSet();
  	}
 
  	public function getAllSantri($kolom, $offset)

@@ -13,10 +13,11 @@ body {
   background: #fff;
   color: #848484;
   font-weight: 300;
+  overflow-x: hidden;
 }
 .wrapper {
   position: fixed;
-  z-index: 2;
+  z-index: 1025;
   background-color: #1a6aaf;
   width: 100%;
   display: flex;
@@ -85,7 +86,7 @@ figure {
 
 #fh5co-header {
   padding-top: 40px;
-  margin-bottom: 30px;
+  margin-bottom: 80px;
 }
 #fh5co-header #fh5co-logo img {
   max-width: 100%;
@@ -98,17 +99,17 @@ figure {
   margin: 0;
 }
 #fh5co-header nav ul li {
-  padding: 0;
+  padding: 10px 10px;
   margin: 0;
   display: -moz-inline-stack;
   display: inline-block;
   zoom: 1;
   display: inline;
   list-style: none;
-  font-size: 15px;
+  font-size: 19px;
 }
 #fh5co-header nav ul li a {
-  color: #999999 !important;
+  color: #999 !important;
   padding: 10px;
 }
 @media screen and (max-width: 480px) {
@@ -136,6 +137,7 @@ figure {
 }
 .fh5co-projects-feed .fh5co-project {
   margin-bottom: 70px;
+  z-index: 3;
 }
 .page-content {
   margin: 0 auto;
