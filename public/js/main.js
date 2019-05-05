@@ -4,9 +4,57 @@
 	$(window).load(function() {
 		setTimeout(() => {
 			$('.wrapper').fadeOut(1000);
-		}, 3000);
+		}, 300);
 	});
 })(window.jQuery);
+
+var state = "closed";
+var wait = 0;
+var expTrans = 300;
+var xTrans = 200;
+var shiftTrans = 400;
+
+// Nested animations to control search box expansion
+$("#magnify").on("click", function(event) { 
+  if (state === "closed" && wait === 0) {
+    wait = 1;
+    // Handle to X animation
+    $("#handle1").animate({ left: "-=19", top: "-=19" }, xTrans);
+    $("#handle2").animate(
+      { right: "-=25", top: "+=19", opacity: "+1" },
+      xTrans,
+      function() {
+        // Expansion of the search box
+        $("#search").animate({ width: "+=200" }, expTrans);
+        $("#input").animate({ width: "+=190" }, expTrans);
+        $("#handle1").animate({ left: "+=200" }, expTrans, function() {
+          // Change states
+          state = "expanded";
+          wait = 0;
+          $("#input").select();
+        });
+      }
+    );
+
+  } else if (state === "expanded" && wait === 0) {
+      wait = 1;
+      // Collapse of the search box
+      $("#handle1").animate({ left: "-=200" }, expTrans);
+      $("#input").animate({ width: "-=190", opactity: "-=1" }, expTrans);
+      $("#search").animate({ width: "-=200" }, expTrans, function() {
+        // Turn the X back to the handle
+        $("#handle2").animate({ right: "+=25", top: "-=19", opacity: "-1" }, xTrans);
+        $("#handle1").animate({ left: "+=19", top: "+=19" }, xTrans, function() {
+        });
+      });
+  }
+});
+
+// Prevent the animation from executing upon clicking the input box
+$("#input").on("click keyup", function(event) {
+  console.log((event.keyCode));
+  event.stopPropagation();
+});
 
 // The typewriter element
 var typeWriterElement = document.getElementById('typewriter');

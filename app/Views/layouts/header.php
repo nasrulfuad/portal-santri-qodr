@@ -48,7 +48,7 @@
 				</main>	
 			</div>
 		</div>
-		<div class="container-content">	
+		<div>	
 			<header id="fh5co-header" role="banner">
 				<div class="container text-center">
 					<div id="fh5co-logo">
@@ -61,5 +61,18 @@
 						</ul>
 					</nav>
 				</div>
+			    <div id = "search-container" class ="mx-auto">
+			      <div id= "search">
+			        <div id= "magnify">
+			          <form id = "myForm">
+			            <input id = "input" type = "text" autocomplete = "off">
+			          </form>
+			          <div id="handle1">
+			            <div id="handle2">
+			            </div>
+			          </div>
+			        </div>
+			      </div>
+			    </div>
 			</header>
 		<!-- END #fh5co-header -->
