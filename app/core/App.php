@@ -25,9 +25,12 @@ class App
 		*/
 
 		if( isset($url[1]) ) {
-			if( method_exists($this->controller, $url[1]) ) {
+			if ( method_exists($this->controller, $url[1]) ) {
 				$this->method = $url[1];
 				unset($url[1]);
+			} else {
+				header("HTTP/1.0 404 Not Found");
+				die('404 Not Found');
 			}
 		}
 

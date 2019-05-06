@@ -15,16 +15,24 @@ body {
   font-weight: 300;
   overflow-x: hidden;
 }
+#santri {
+  height: 1376.7px;
+  min-height: 1376.7px;
+}
 .wrapper {
   position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
   z-index: 1025;
-  background-color: #1a6aaf;
+  background-color: #eee;
   width: 100%;
   display: flex;
   height: 100%;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: #1a6aaf;
   font-size: 40px;
 }
 .centeredBox {
@@ -32,7 +40,7 @@ body {
   text-align: center;
 }
 .cursor {
-  border-left: 4px solid white;
+  border-left: 3px solid #1a6aaf;
 }
 body.fh5co-offcanvas {
   overflow: hidden;
@@ -377,7 +385,7 @@ figure {
   width: 70px;
   height: 5px;
   border-radius: 2.5px;
-  background-color: #fff;
+  background-color: #1a6aaf;
   content: '';
   -webkit-transform: rotate(0deg);
           transform: rotate(0deg);

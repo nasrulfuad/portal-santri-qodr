@@ -38,16 +38,6 @@
 
 	</head>
 	<body>
-		<div class="wrapper">
-			<div class="centeredBox">
-				<main role='main'>
-					<div aria-busy='true' aria-label='Loading' role='progressbar'></div>
-					<br>
-					<span id="typewriter" data-array=""></span>
-					<span class="cursor"></span>
-				</main>	
-			</div>
-		</div>
 		<div>	
 			<header id="fh5co-header" role="banner">
 				<div class="container text-center">
@@ -61,11 +51,21 @@
 						</ul>
 					</nav>
 				</div>
+		        <div id="loader" class="wrapper">
+		          <div class="centeredBox">
+		            <main role='main'>
+		              <div aria-busy='true' aria-label='Loading' role='progressbar'></div>
+		              <br>
+		              <span id="typewriter" data-array=""></span>
+		              <span class="cursor"></span>
+		            </main> 
+		          </div>
+		        </div>
 			    <div id = "search-container" class ="mx-auto">
 			      <div id= "search">
 			        <div id= "magnify">
-			          <form id = "myForm">
-			            <input id = "input" type = "text" autocomplete = "off">
+			          <form id = "searchSantri">
+			            <input id = "input" type = "text" autocomplete = "off" placeholder="Cari berdasarkan nama">
 			          </form>
 			          <div id="handle1">
 			            <div id="handle2">

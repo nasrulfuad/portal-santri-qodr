@@ -1,5 +1,5 @@
 getTotalRows('http://localhost/santries/public/santri/rows');
-getLimit('http://localhost/santries/public', 'http://localhost/santries/public/santri', '#santri', offset = 0);
+firstGet('http://localhost/santries/public', 'http://localhost/santries/public/santri', '#santri', offset = 0);
 
 $('#next').on('click', function(e) {
 	e.preventDefault();
@@ -24,4 +24,9 @@ $('#prev').on('click', function(e) {
 		( parseInt(nav.attr('data-offset')) < 9 ) ? that.addClass('disabled') : that.removeClass('disabled');
 		(next.hasClass('disabled')) ? next.removeClass('disabled') : '';
 	}
+});
+
+$('#searchSantri').on('submit', (e) => {
+	console.log('okeokeoek');
+	e.preventDefault();
 });
