@@ -29,5 +29,5 @@ $('#prev').on('click', function(e) {
 $('#searchSantri').on('submit', (e) => {
 	e.preventDefault();
 	let key = $('#input').val();
-	getLimit('http://localhost/santries/public', 'http://localhost/santries/public/santri/search', '#santri', key);
+	search('http://localhost/santries/public', 'http://localhost/santries/public/santri/search', '#santri', key);
 });

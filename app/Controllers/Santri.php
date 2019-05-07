@@ -59,7 +59,8 @@ class Santri extends Controller
 			return $this->view('errors/404');
 		} else {
 			$response = $this->model('santriModel')->searchSantri(['nama', 'cabang_sekarang', 'kota_asal', 'status_santri'], $params, $offset);
-			echo ( !$response ) ?  header("HTTP/1.0 404 Not Found") :  json_encode($response);
+			$totalRow = $this->model('santriModel')->getCountRows("AND nama LIKE '%$params%'")[0]['total'];
+			echo ( !$response ) ?  header("HTTP/1.0 404 Not Found") :  json_encode([$response, $totalRow]);
 		}
 	}
 }

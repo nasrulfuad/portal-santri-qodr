@@ -170,12 +170,16 @@ function firstGet(baseUrl, url, element, offset) {
 function search(baseUrl, url, element, keyword) {
 	$.ajax({
 		method: 'GET',
-		url: url + keyword,
+		url: url + '/' + keyword,
 		dataType: 'json',
+		beforeSend: () => {
+			$('.wrapper').fadeIn(1000);
+		},
 		success: (result) => {
+			console.log(result)
 			let htmlTag = '';
-			if ( result.length != 0 ) {
-				$.each(result, (res, val) => {
+			if ( result[0].length != 0 ) {
+				$.each(result[0], (res, val) => {
 					htmlTag += `
 				          <div class="fh5co-project col-12 col-md-6 col-lg-4 p-3">
 				            <div class="fh5co-person text-center">
@@ -193,8 +197,18 @@ function search(baseUrl, url, element, keyword) {
 					`;
 				});
 			}
-			( result.length < 9 ) ? $('#next').addClass('disabled') :'';
-			$(element).html(htmlTag);
+			( result[1].length < 9 ) ? $('#next').addClass('disabled') :'';
+			let wait = new Promise((response, ejected) => {
+				$('.wrapper').fadeOut(1000);
+				setTimeout(() => {
+					response();
+				}, 800);
+			});
+			wait.then(() => {
+				$(element).html(htmlTag);
+				$('#totalPage').html(Math.ceil(result[1]/9));
+				( result.length < 9 ) ? $('#next').addClass('disabled') :'';
+			});
 		}
 	});
 }

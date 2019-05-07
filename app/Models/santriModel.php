@@ -16,6 +16,13 @@
  		return $this->db->resultSet();
  	}
 
+ 	public function getCountRows($conditions)
+ 	{
+ 		$conditions = $conditions ?? '';
+ 		$this->db->query("SELECT COUNT(*) AS total FROM santri WHERE status_santri='santri' $conditions;");
+ 		return $this->db->resultSet();
+ 	}
+
  	public function getAllSantri($kolom, $offset)
  	{
  		$kolom = implode(',', $kolom);
