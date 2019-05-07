@@ -61,11 +61,11 @@
 		            </main> 
 		          </div>
 		        </div>
-			    <div id = "search-container" class ="mx-auto">
-			      <div id= "search">
-			        <div id= "magnify">
-			          <form id = "searchSantri">
-			            <input id = "input" type = "text" autocomplete = "off" placeholder="Cari berdasarkan nama">
+			    <div id="search-container" class="mx-auto">
+			      <div id="search">
+			        <div id="magnify">
+			          <form id="searchSantri">
+			            <input id="input" name="key" type="text" autocomplete="off" placeholder="Cari berdasarkan nama">
 			          </form>
 			          <div id="handle1">
 			            <div id="handle2">
