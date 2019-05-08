@@ -176,8 +176,9 @@ function search(baseUrl, url, element, keyword) {
 			$('.wrapper').fadeIn(1000);
 		},
 		success: (result) => {
-			console.log(result)
 			let htmlTag = '';
+			let totalRows = parseInt(result[1]);
+
 			if ( result[0].length != 0 ) {
 				$.each(result[0], (res, val) => {
 					htmlTag += `
@@ -197,7 +198,6 @@ function search(baseUrl, url, element, keyword) {
 					`;
 				});
 			}
-			( result[1].length < 9 ) ? $('#next').addClass('disabled') :'';
 			let wait = new Promise((response, ejected) => {
 				$('.wrapper').fadeOut(1000);
 				setTimeout(() => {
@@ -206,8 +206,8 @@ function search(baseUrl, url, element, keyword) {
 			});
 			wait.then(() => {
 				$(element).html(htmlTag);
-				$('#totalPage').html(Math.ceil(result[1]/9));
-				( result.length < 9 ) ? $('#next').addClass('disabled') :'';
+				$('#totalPage').html(Math.ceil(totalRows/9));
+				( totalRows < 9 ) ? $('#next').addClass('disabled') : $('#next').removeClass('disabled');
 			});
 		}
 	});

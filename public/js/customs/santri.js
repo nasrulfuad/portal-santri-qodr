@@ -1,7 +1,8 @@
 getTotalRows('http://localhost/santries/public/santri/rows');
 firstGet('http://localhost/santries/public', 'http://localhost/santries/public/santri/get', '#santri', offset = 0);
 
-$('#next').on('click', function(e) {
+$('.next-page').on('click', function(e) {
+	console.log('next-page')
 	e.preventDefault();
 	if ( !$(this).hasClass('disabled') ) {
 		let nav = $(this).parents('nav');
@@ -12,7 +13,7 @@ $('#next').on('click', function(e) {
 	}
 });
 
-$('#prev').on('click', function(e) {
+$('.prev-page').on('click', function(e) {
 	e.preventDefault();
 	if ( !$(this).hasClass('disabled') ) {
 		let that = $(this);
@@ -29,5 +30,7 @@ $('#prev').on('click', function(e) {
 $('#searchSantri').on('submit', (e) => {
 	e.preventDefault();
 	let key = $('#input').val();
+	$('#next').removeClass('next-page').addClass('next-page-search');
+	$('#prev').removeClass('prev-page').addClass('prev-page-search');
 	search('http://localhost/santries/public', 'http://localhost/santries/public/santri/search', '#santri', key);
 });
