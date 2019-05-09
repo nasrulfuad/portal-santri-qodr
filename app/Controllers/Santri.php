@@ -63,11 +63,7 @@ class Santri extends Controller
 			$response = $this->model('santriModel')->searchSantri(['nama', 'cabang_sekarang', 'kota_asal', 'status_santri'], $params, $offset);
 			$totalRow = $this->model('santriModel')->getCountRows("AND nama LIKE '%$params%'")[0]['total'];
 			$nextOffset = $offset + 9;
-			if ( ($nextOffset > ($totalRow + 9)) || (count($response) < 9) ) {
-				$nextPage = '';
-			} else {
-				$nextPage = BASEURL . "/santri/search/$params/$nextOffset";
-			}
+			( ($nextOffset > ($totalRow + 9)) || (count($response) < 9) || ($totalRow <= 9)) ? $nextPage = '' : $nextPage = BASEURL . "/santri/search/$params/$nextOffset";
 			( $offset != 0 ) ? $prevPage = BASEURL . "/santri/search/$params/$prevOffset" : $prevPage = ''; 
 			echo ( !$response ) ?  header("HTTP/1.0 404 Not Found") :  json_encode([
 				'data' => $response, 

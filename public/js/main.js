@@ -1,3 +1,4 @@
+let baseUrl = 'http://localhost/santries/public';
 (function($){
 	"use strict";
 
@@ -92,7 +93,7 @@ function getTotalRows(url) {
 	});
 }
 
-function getLimit(baseUrl, url, element, offset) {
+function getLimit(url, element, offset) {
 	$.ajax({
 		method: 'GET',
 		url: url + '' + '/' + offset,
@@ -135,39 +136,21 @@ function getLimit(baseUrl, url, element, offset) {
 	});
 }
 
-function firstGet(baseUrl, url, element, offset) {
+function firstGet(url, element, offset) {
 	$.ajax({
 		method: 'GET',
 		url: url + '' + '/' + offset,
 		dataType: 'json',
 		success: (result) => {
 			let htmlTag = '';
-			if ( result.length != 0 ) {
-				$.each(result, (res, val) => {
-					htmlTag += `
-				          <div class="fh5co-project col-12 col-md-6 col-lg-4 p-3">
-				            <div class="fh5co-person text-center">
-				              <figure><img src="${ baseUrl }/images/person.jpg" alt="Image"></figure>
-				              <h3>${ val.nama.replace(/\b\w/g, l => l.toUpperCase()) }</h3>
-				              <span class="fh5co-position">Web Designer</span>
-				              <p>Asal  :  ${ val.kota_asal.replace(/\b\w/g, l => l.toUpperCase()) }</p>
-				              <p>Cabang  :  ${ (val.cabang_sekarang == 'hq') ? 'HQ' : val.cabang_sekarang.replace(/\b\w/g, l => l.toUpperCase()) }</p>
-				              <p>Umur  :  19 Tahun</p>
-				              <p>Skills  :  PHP, Laravel, HTML</p>
-				              <p>Status : </p>
-				              <p class="btn-status">${ val.status_santri }</p>
-				            </div>
-				          </div>
-					`;
-				});
-			}
+			( result.length != 0 ) ? render(result) : '';
 			( result.length < 9 ) ? $('#next').addClass('disabled') :'';
-			$(element).html(htmlTag);
+			$(element).html(render(result));
 		}
 	});
 }
 
-function search(baseUrl, url, element) {
+function search(url, element) {
 	$.ajax({
 		method: 'GET',
 		url: url,
@@ -178,26 +161,7 @@ function search(baseUrl, url, element) {
 		success: (result) => {
 			let htmlTag = '';
 			let totalRows = parseInt(result.totalRow);
-
-			if ( result.data.length != 0 ) {
-				$.each(result.data, (res, val) => {
-					htmlTag += `
-				          <div class="fh5co-project col-12 col-md-6 col-lg-4 p-3">
-				            <div class="fh5co-person text-center">
-				              <figure><img src="${ baseUrl }/images/person.jpg" alt="Image"></figure>
-				              <h3>${ val.nama.replace(/\b\w/g, l => l.toUpperCase()) }</h3>
-				              <span class="fh5co-position">Web Designer</span>
-				              <p>Asal  :  ${ val.kota_asal.replace(/\b\w/g, l => l.toUpperCase()) }</p>
-				              <p>Cabang  :  ${ (val.cabang_sekarang == 'hq') ? 'HQ' : val.cabang_sekarang.replace(/\b\w/g, l => l.toUpperCase()) }</p>
-				              <p>Umur  :  19 Tahun</p>
-				              <p>Skills  :  PHP, Laravel, HTML</p>
-				              <p>Status : </p>
-				              <p class="btn-status">${ val.status_santri }</p>
-				            </div>
-				          </div>
-					`;
-				});
-			}
+			( result.data.length != 0 ) ? render(result.data) : '';
 			( result.nextPage != '' ) ? $('#next').removeClass('disabled') : $('#next').addClass('disabled');
 			( result.prevPage != '' ) ? $('#prev').removeClass('disabled') : $('#prev').addClass('disabled');
 			$('#next').attr('link', result.nextPage);
@@ -210,11 +174,34 @@ function search(baseUrl, url, element) {
 				}, 800);
 			});
 			wait.then(() => {
-				$(element).html(htmlTag);
+				$(element).html(render(result.data));
 				$('#totalPage').html(Math.ceil(totalRows/9));
 			});
 		}
 	});
+}
+
+function render(results)
+{
+	let htmlTag = '';
+	$.each(results, (res, val) => {
+		htmlTag += `
+	          <div class="fh5co-project col-12 col-md-6 col-lg-4 p-3">
+	            <div class="fh5co-person text-center">
+	              <figure><img src="${ baseUrl }/images/person.jpg" alt="Image"></figure>
+	              <h3>${ val.nama.replace(/\b\w/g, l => l.toUpperCase()) }</h3>
+	              <span class="fh5co-position">Web Designer</span>
+	              <p>Asal  :  ${ val.kota_asal.replace(/\b\w/g, l => l.toUpperCase()) }</p>
+	              <p>Cabang  :  ${ (val.cabang_sekarang == 'hq') ? 'HQ' : val.cabang_sekarang.replace(/\b\w/g, l => l.toUpperCase()) }</p>
+	              <p>Umur  :  19 Tahun</p>
+	              <p>Skills  :  PHP, Laravel, HTML</p>
+	              <p>Status : </p>
+	              <p class="btn-status">${ val.status_santri }</p>
+	            </div>
+	          </div>
+		`;
+	});
+	return htmlTag;
 }
 
 function toggleMagnify()
