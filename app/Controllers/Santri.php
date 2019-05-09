@@ -52,15 +52,31 @@ class Santri extends Controller
 	* Mengambil data berdasarkan nama yang user input
 	* dan di limit 9 rows tiap halaman 
 	*/
-	public function search($params = NULL , $offset = 0)
+	public function search($params = NULL, $offset = 0)
 	{
 		if ( !$params ) {
 			header("HTTP/1.0 404 Not Found");
 			return $this->view('errors/404');
-		} else {
+		} else if ( is_numeric($offset) ) {
+			$prevOffset = $offset - 9;
+			( ($prevOffset) < 0 ) ? $prevOffset = 0 : $prevOffset;
 			$response = $this->model('santriModel')->searchSantri(['nama', 'cabang_sekarang', 'kota_asal', 'status_santri'], $params, $offset);
 			$totalRow = $this->model('santriModel')->getCountRows("AND nama LIKE '%$params%'")[0]['total'];
-			echo ( !$response ) ?  header("HTTP/1.0 404 Not Found") :  json_encode([$response, $totalRow]);
+			$nextOffset = $offset + 9;
+			if ( ($nextOffset > ($totalRow + 9)) || (count($response) < 9) ) {
+				$nextPage = '';
+			} else {
+				$nextPage = BASEURL . "/santri/search/$params/$nextOffset";
+			}
+			( $offset != 0 ) ? $prevPage = BASEURL . "/santri/search/$params/$prevOffset" : $prevPage = ''; 
+			echo ( !$response ) ?  header("HTTP/1.0 404 Not Found") :  json_encode([
+				'data' => $response, 
+				'totalRow' => $totalRow,
+				'nextPage' => $nextPage,
+				'prevPage' => $prevPage,
+			], JSON_UNESCAPED_SLASHES);
+		} else {
+			echo 'offset harus berupa angka';
 		}
 	}
 }

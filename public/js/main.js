@@ -167,20 +167,20 @@ function firstGet(baseUrl, url, element, offset) {
 	});
 }
 
-function search(baseUrl, url, element, keyword) {
+function search(baseUrl, url, element) {
 	$.ajax({
 		method: 'GET',
-		url: url + '/' + keyword,
+		url: url,
 		dataType: 'json',
 		beforeSend: () => {
 			$('.wrapper').fadeIn(1000);
 		},
 		success: (result) => {
 			let htmlTag = '';
-			let totalRows = parseInt(result[1]);
+			let totalRows = parseInt(result.totalRow);
 
-			if ( result[0].length != 0 ) {
-				$.each(result[0], (res, val) => {
+			if ( result.data.length != 0 ) {
+				$.each(result.data, (res, val) => {
 					htmlTag += `
 				          <div class="fh5co-project col-12 col-md-6 col-lg-4 p-3">
 				            <div class="fh5co-person text-center">
@@ -198,6 +198,11 @@ function search(baseUrl, url, element, keyword) {
 					`;
 				});
 			}
+			( result.nextPage != '' ) ? $('#next').removeClass('disabled') : $('#next').addClass('disabled');
+			( result.prevPage != '' ) ? $('#prev').removeClass('disabled') : $('#prev').addClass('disabled');
+			$('#next').attr('link', result.nextPage);
+			$('#prev').attr('link', result.prevPage);
+
 			let wait = new Promise((response, ejected) => {
 				$('.wrapper').fadeOut(1000);
 				setTimeout(() => {
@@ -207,7 +212,6 @@ function search(baseUrl, url, element, keyword) {
 			wait.then(() => {
 				$(element).html(htmlTag);
 				$('#totalPage').html(Math.ceil(totalRows/9));
-				( totalRows < 9 ) ? $('#next').addClass('disabled') : $('#next').removeClass('disabled');
 			});
 		}
 	});

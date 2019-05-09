@@ -2,13 +2,13 @@
       <div id="santri" class="fh5co-projects-feed row">
       </div>
       <!--END .fh5co-projects-feed-->
-      <nav aria-label="Page navigation example" data-offset="0">
+      <nav id="nav" aria-label="Page navigation example" data-offset="0" status="normal">
         <ul class="pagination justify-content-center">
-          <li class="page-item disabled prev-page" id="prev">
+          <li class="page-item disabled" id="prev">
             <a class="page-link" href="#">Previous</a>
           </li>
           <li class="page-item disabled"><a class="page-link" href="#"><span id="currentPage">1</span> of <span id="totalPage"></span></a></li>
-          <li class="page-item next-page" id="next">
+          <li class="page-item" id="next">
             <a class="page-link" href="#">Next</a>
           </li>
         </ul>
