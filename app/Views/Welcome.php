@@ -13,5 +13,39 @@
           </li>
         </ul>
       </nav>
+      <!-- Modal start -->
+      <div class="modal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-header">
+            <h4>Biodata <span id="nama-santri">Nasrul</span></h4>
+          </div>
+          <div class="modal-body">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th>Nama</th>
+                  <td>: Nasrul Fuad</td>
+                </tr>
+                <tr>
+                  <th>Asal</th>
+                  <td>: Jember, Jawa Timur</td>
+                </tr>
+                <tr>
+                  <th>Cabang</th>
+                  <td>: HQ</td>
+                </tr>
+                <tr>
+                  <th>Skiils</th>
+                  <td>: PHP, Codeigniter, Laravel, Javascript, Bootstrap, HTML, CSS, Vue JS, React JS</td>
+                </tr>
+              </tbody>
+            </table>
+            <small>
+              Click anywhere to close
+            </small>
+          </div>
+        </div>
+      </div>
+      <!-- Close modal -->
     </div>
     <!-- END .container-fluid -->

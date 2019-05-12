@@ -1,10 +1,10 @@
 let baseUrl = 'http://localhost/santries/public';
 (function($){
 	"use strict";
-
 	$(window).load(function() {
 		setTimeout(() => {
 			$('#loader').fadeOut(1000);
+			Modal.init();
 		}, 300);
 	});
 })(window.jQuery);
@@ -14,6 +14,43 @@ var wait = 0;
 var expTrans = 300;
 var xTrans = 200;
 var shiftTrans = 400;
+
+var Modal = {
+  effects : [
+    'scale'
+  ],
+  
+  init: function() {
+    $('button[data-toggle=modal]').on('click', function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      
+      var effect = $(this).attr('data-effect');
+      $('.modal').addClass(effect).addClass('show').removeClass('hiding');
+      $('body').addClass('modal-open');
+      $('body').addClass('modal-' + effect);
+      
+      var h = $('.modal-dialog').height();
+      $('.modal-dialog').css({
+        'margin-top': '-' + parseInt(h / 2) + 'px'
+      });
+    });
+    
+    $('.modal').on('click', function(e) {
+      $('.modal').removeClass('show').addClass('hiding');
+      
+      setTimeout(function() {
+        for(var i = 0; i < Modal.effects.length; i++) {
+          $('.modal').removeClass(Modal.effects[i]);
+          $('body').removeClass('modal-' + Modal.effects[i]);
+        }
+
+        $('.modal').removeClass('hiding');
+        $('body').removeClass('modal-open');
+      }, 250);
+    });
+  }
+};
 
 // Nested animations to control search box expansion
 $("#magnify").on("click", function(e) { 
@@ -88,7 +125,7 @@ function getTotalRows(url) {
 		method: 'GET',
 		url: url,
 		success: (result) => {
-			$('#totalPage').html(Math.ceil(result/9));
+			$('#totalPage').html(Math.ceil(result/24));
 		}
 	});
 }
@@ -103,26 +140,8 @@ function getLimit(url, element, offset) {
 		},
 		success: (result) => {
 			let htmlTag = '';
-			if ( result.length != 0 ) {
-				$.each(result, (res, val) => {
-					htmlTag += `
-				          <div class="fh5co-project col-12 col-md-6 col-lg-4 p-3">
-				            <div class="fh5co-person text-center">
-				              <figure><img src="${ baseUrl }/images/person.jpg" alt="Image"></figure>
-				              <h3>${ val.nama.replace(/\b\w/g, l => l.toUpperCase()) }</h3>
-				              <span class="fh5co-position">Web Designer</span>
-				              <p>Asal  :  ${ val.kota_asal.replace(/\b\w/g, l => l.toUpperCase()) }</p>
-				              <p>Cabang  :  ${ (val.cabang_sekarang == 'hq') ? 'HQ' : val.cabang_sekarang.replace(/\b\w/g, l => l.toUpperCase()) }</p>
-				              <p>Umur  :  19 Tahun</p>
-				              <p>Skills  :  PHP, Laravel, HTML</p>
-				              <p>Status : </p>
-				              <p class="btn-status">${ val.status_santri }</p>
-				            </div>
-				          </div>
-					`;
-				});
-			}
-			( result.length < 9 ) ? $('#next').addClass('disabled') :'';
+			( result.length != 0 ) ? htmlTag += render(result) : htmlTag += 'Kosong';
+			( result.length < 24 ) ? $('#next').addClass('disabled') :'';
 			let wait = new Promise((response, ejected) => {
 				$('.wrapper').fadeOut(1000);
 				setTimeout(() => {
@@ -143,9 +162,9 @@ function firstGet(url, element, offset) {
 		dataType: 'json',
 		success: (result) => {
 			let htmlTag = '';
-			( result.length != 0 ) ? render(result) : '';
-			( result.length < 9 ) ? $('#next').addClass('disabled') :'';
-			$(element).html(render(result));
+			( result.length != 0 ) ? htmlTag += render(result) : htmlTag += 'Kosong';
+			( result.length < 24 ) ? $('#next').addClass('disabled') :'';
+			$(element).html(htmlTag);
 		}
 	});
 }
@@ -161,7 +180,7 @@ function search(url, element) {
 		success: (result) => {
 			let htmlTag = '';
 			let totalRows = parseInt(result.totalRow);
-			( result.data.length != 0 ) ? render(result.data) : '';
+			( result.data.length != 0 ) ? htmlTag += render(result.data) : htmlTag += 'Kosong';
 			( result.nextPage != '' ) ? $('#next').removeClass('disabled') : $('#next').addClass('disabled');
 			( result.prevPage != '' ) ? $('#prev').removeClass('disabled') : $('#prev').addClass('disabled');
 			$('#next').attr('link', result.nextPage);
@@ -174,8 +193,8 @@ function search(url, element) {
 				}, 800);
 			});
 			wait.then(() => {
-				$(element).html(render(result.data));
-				$('#totalPage').html(Math.ceil(totalRows/9));
+				$(element).html(htmlTag);
+				$('#totalPage').html(Math.ceil(totalRows/24));
 			});
 		}
 	});
@@ -186,17 +205,13 @@ function render(results)
 	let htmlTag = '';
 	$.each(results, (res, val) => {
 		htmlTag += `
-	          <div class="fh5co-project col-12 col-md-6 col-lg-4 p-3">
+	          <div class="fh5co-project col-12 col-md-6 col-lg-6 col-xl-2 p-3">
 	            <div class="fh5co-person text-center">
 	              <figure><img src="${ baseUrl }/images/person.jpg" alt="Image"></figure>
-	              <h3>${ val.nama.replace(/\b\w/g, l => l.toUpperCase()) }</h3>
+	              <h6>${ val.panggilan.replace(/\b\w/g, l => l.toUpperCase()) }</h6>
 	              <span class="fh5co-position">Web Designer</span>
-	              <p>Asal  :  ${ val.kota_asal.replace(/\b\w/g, l => l.toUpperCase()) }</p>
-	              <p>Cabang  :  ${ (val.cabang_sekarang == 'hq') ? 'HQ' : val.cabang_sekarang.replace(/\b\w/g, l => l.toUpperCase()) }</p>
 	              <p>Umur  :  19 Tahun</p>
-	              <p>Skills  :  PHP, Laravel, HTML</p>
-	              <p>Status : </p>
-	              <p class="btn-status">${ val.status_santri }</p>
+	              <button class="btn-status" data-toggle="modal" data-effect="scale" data-toggle="tooltip" title="Click to show details">Detail</button>
 	            </div>
 	          </div>
 		`;

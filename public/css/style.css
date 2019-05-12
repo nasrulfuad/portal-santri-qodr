@@ -47,14 +47,12 @@ a {
   -o-transition: 0.5s;
   transition: 0.5s;
 }
-a:hover {
-  text-decoration: none !important;
-  color: #2da9d7 !important;
-}
 a:active, a:focus {
   outline: none;
 }
-
+button[data-toggle] {
+  white-space: nowrap;
+}
 p, ul, ol {
   margin-bottom: 1.5em;
   font-size: 15px;
@@ -201,11 +199,12 @@ figure {
 }
 .fh5co-projects-feed {
   margin: 0 auto;
-  max-width: 1600px; 
+  max-width: 1800px; 
 }
 .fh5co-projects-feed .fh5co-project {
-  margin-bottom: 70px;
+  margin-bottom: 60px;
   z-index: 3;
+  position: relative;
 }
 .page-content {
   margin: 0 auto;
@@ -293,6 +292,8 @@ figure {
   -ms-box-shadow: 7px 14px 42px 3px rgba(163, 174, 184, 0.4);
   -o-box-shadow: 7px 14px 42px 3px rgba(163, 174, 184, 0.4);
   box-shadow: 7px 14px 42px 3px rgba(163, 174, 184, 0.4);
+  height: 300px;
+  min-height: 300px;
 }
 .fh5co-person:hover {
   background: #6C6B74;
@@ -336,12 +337,12 @@ figure {
   -ms-border-radius: 50%;
   border-radius: 50%;
 }
-.fh5co-person h3 {
+.fh5co-person h5 {
   margin-bottom: 0px;
 }
 .fh5co-person .fh5co-position {
   display: block;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .fh5co-person p {
   margin: 0;
@@ -350,10 +351,12 @@ figure {
   background: #52d3aa;
   color: #fff;
   text-transform: uppercase;
-  border-radius: 0;
-  width: 200px;
-  margin: 0 auto;
+  padding: 0 20px;
   font-weight: normal;
+  display: block;
+  margin: 50px  auto 0;
+  outline: none;
+  border: none;
 }
 .fh5co-person .list-info {
   text-align: left;
@@ -456,5 +459,68 @@ figure {
   100% {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
+  }
+}
+.modal {
+  background: rgba(0,0,0, .6);
+}
+.modal .modal-dialog {
+  left: 50%;
+  line-height: 20px;
+  margin-left: -250px;
+  position: absolute;
+  top: 50%;
+  transition: all 0.5s ease;
+}
+.modal .modal-dialog .modal-header {
+  background: #0ABDA0;
+  font-size: 18px;
+  padding: 10px;
+}
+.modal .modal-dialog .modal-header h4 {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+.modal .modal-dialog .modal-header .close {
+  cursor: pointer;
+}
+.modal .modal-dialog .modal-body {
+  background: #fff;
+  padding: 10px;
+}
+.modal .modal-dialog .modal-body p {
+  margin: 0;
+  padding: 0;
+}
+.modal.show,
+.modal.hiding {
+  display: block;
+}
+.modal.scale.show {
+  animation: modal-scale-animation 0.5s ease;
+}
+.modal.scale.hiding {
+  animation: modal-scale-animation-out 0.25s ease;
+  display: block;
+}
+@keyframes modal-scale-animation {
+  from {
+    opacity: 0;
+    transform: scale(2, 2);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+}
+@keyframes modal-scale-animation-out {
+  from {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(2, 2);
   }
 }
