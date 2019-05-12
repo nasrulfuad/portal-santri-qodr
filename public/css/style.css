@@ -465,11 +465,12 @@ figure {
   background: rgba(0,0,0, .6);
 }
 .modal .modal-dialog {
-  left: 50%;
-  line-height: 20px;
-  margin-left: -250px;
   position: absolute;
-  top: 50%;
+  top: 30%;
+  left: 0;
+  right: 0;
+  line-height: 20px;
+  margin: 0 auto
   transition: all 0.5s ease;
 }
 .modal .modal-dialog .modal-header {

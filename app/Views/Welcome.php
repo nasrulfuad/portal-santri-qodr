@@ -13,11 +13,18 @@
           </li>
         </ul>
       </nav>
-      <!-- Modal start -->
-      <div class="modal">
-        <div class="modal-dialog modal-xl">
+    </div>
+
+    <!-- END .container-fluid -->
+    <!-- Modal start -->
+    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
           <div class="modal-header">
-            <h4>Biodata <span id="nama-santri">Nasrul</span></h4>
+            <h5 class="modal-title">Semua tentang Nasrul Fuad</h5>
+            <button type="button" class="close-modal close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
           <div class="modal-body">
             <table class="table">
@@ -40,12 +47,12 @@
                 </tr>
               </tbody>
             </table>
-            <small>
-              Click anywhere to close
-            </small>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary close-modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
-      <!-- Close modal -->
     </div>
-    <!-- END .container-fluid -->
+    <!-- Close modal -->

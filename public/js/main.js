@@ -36,7 +36,7 @@ var Modal = {
       });
     });
     
-    $('.modal').on('click', function(e) {
+    $('.modal .close-modal').on('click', function(e) {
       $('.modal').removeClass('show').addClass('hiding');
       
       setTimeout(function() {
