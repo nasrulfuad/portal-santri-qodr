@@ -21,7 +21,7 @@
       <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Semua tentang Nasrul Fuad</h5>
+            <h5 class="modal-title">Semua tentang <span id="modal-title"></span></h5>
             <button type="button" class="close-modal close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -31,19 +31,19 @@
               <tbody>
                 <tr>
                   <th>Nama</th>
-                  <td>: Nasrul Fuad</td>
+                  <td>: <span id="modal-nama"></span></td>
                 </tr>
                 <tr>
                   <th>Asal</th>
-                  <td>: Jember, Jawa Timur</td>
+                  <td>: <span id="modal-asal"></span></td>
                 </tr>
                 <tr>
                   <th>Cabang</th>
-                  <td>: HQ</td>
+                  <td>: <span id="modal-cabang"></span></td>
                 </tr>
                 <tr>
                   <th>Skiils</th>
-                  <td>: PHP, Codeigniter, Laravel, Javascript, Bootstrap, HTML, CSS, Vue JS, React JS</td>
+                  <td id="modal-skill">: PHP, Codeigniter, Laravel, Javascript, Bootstrap, HTML, CSS, Vue JS, React JS</td>
                 </tr>
               </tbody>
             </table>

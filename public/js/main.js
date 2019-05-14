@@ -29,7 +29,10 @@ var Modal = {
       $('.modal').addClass(effect).addClass('show').removeClass('hiding');
       $('body').addClass('modal-open');
       $('body').addClass('modal-' + effect);
-      
+
+      // getDetails();
+      getDetails($(this).attr('data-uid'));
+
       var h = $('.modal-dialog').height();
       $('.modal-dialog').css({
         'margin-top': '-' + parseInt(h / 2) + 'px'
@@ -51,6 +54,28 @@ var Modal = {
     });
   }
 };
+
+function getDetails(uid)
+{
+	$.ajax({
+		method: 'GET',
+		url: baseUrl + '/santri/detail/' + uid,
+		dataType: 'json',
+		success: (result) => {
+			result = result[0];
+			const newRes = Object.entries(result);
+			const hasil = newRes.reduce((accumulator, [key, value]) => {
+			  accumulator[key] = value.replace(/\b\w/g, l => l.toUpperCase());;
+			  return accumulator;
+			}, {});
+
+			$('#modal-title').html(hasil.nama.replace(/\b\w/g, l => l.toUpperCase()))
+			$('#modal-nama').html(hasil.nama.replace(/\b\w/g, l => l.toUpperCase()))
+			$('#modal-asal').html(hasil.kota_asal.replace(/\b\w/g, l => l.toUpperCase()))
+			$('#modal-cabang').html(hasil.cabang_sekarang.replace(/\b\w/g, l => l.toUpperCase()))
+		}
+	});
+}
 
 // Nested animations to control search box expansion
 $("#magnify").on("click", function(e) { 
@@ -150,6 +175,7 @@ function getLimit(url, element, offset) {
 			});
 			wait.then(() => {
 				$(element).html(htmlTag);
+				Modal.init();
 			});
 		}
 	});
@@ -195,6 +221,7 @@ function search(url, element) {
 			wait.then(() => {
 				$(element).html(htmlTag);
 				$('#totalPage').html(Math.ceil(totalRows/24));
+				Modal.init();
 			});
 		}
 	});
@@ -211,7 +238,7 @@ function render(results)
 	              <h6>${ val.panggilan.replace(/\b\w/g, l => l.toUpperCase()) }</h6>
 	              <span class="fh5co-position">Web Designer</span>
 	              <p>Umur  :  19 Tahun</p>
-	              <button class="btn-status" data-toggle="modal" data-effect="scale" data-toggle="tooltip" title="Click to show details">Detail</button>
+	              <button class="btn-status" data-uid="${ val.uid }" data-toggle="modal" data-effect="scale" data-toggle="tooltip" title="Click to show details">Detail</button>
 	            </div>
 	          </div>
 		`;

@@ -37,4 +37,12 @@
  		$this->db->bind('keyword', "%$params%");
  		return $this->db->resultSet();
  	}
+
+ 	public function getDetail($kolom, $uid)
+ 	{
+ 		$kolom = implode(',', $kolom);
+ 		$this->db->query("SELECT $kolom from santri WHERE uid= :uid;");
+ 		$this->db->bind('uid', "$uid");
+ 		return $this->db->resultSet();
+ 	}
  }

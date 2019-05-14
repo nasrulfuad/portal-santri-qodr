@@ -3,6 +3,7 @@ firstGet('http://localhost/santries/public/santri/get', '#santri', offset = 0);
 let nav = $('#nav');
 let currentPage = $('#currentPage');
 
+
 $('#next').on('click', function(e) {
 	e.preventDefault();
 	let navStatus = $('#nav').attr('status');
