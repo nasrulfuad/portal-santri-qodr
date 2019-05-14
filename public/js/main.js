@@ -69,10 +69,10 @@ function getDetails(uid)
 			  return accumulator;
 			}, {});
 
-			$('#modal-title').html(hasil.nama.replace(/\b\w/g, l => l.toUpperCase()))
-			$('#modal-nama').html(hasil.nama.replace(/\b\w/g, l => l.toUpperCase()))
-			$('#modal-asal').html(hasil.kota_asal.replace(/\b\w/g, l => l.toUpperCase()))
-			$('#modal-cabang').html(hasil.cabang_sekarang.replace(/\b\w/g, l => l.toUpperCase()))
+			$('#modal-title').html(hasil.nama)
+			$('#modal-nama').html(hasil.nama)
+			$('#modal-asal').html(hasil.kota_asal)
+			$('#modal-cabang').html(hasil.cabang_sekarang)
 		}
 	});
 }
